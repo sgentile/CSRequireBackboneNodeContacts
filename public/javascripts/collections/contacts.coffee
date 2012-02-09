@@ -1,4 +1,4 @@
-define [ "jquery", "underscore", "backbone", "models/contact" ], 
+define [ "jquery", "underscore", "backbone", "cs!models/contact" ], 
 ($, _, Backbone, contact) ->
   class ContactsCollection extends Backbone.Collection
     url: "Contact"

@@ -5,6 +5,4 @@ define [ "underscore", "backbone" ], (_, Backbone) ->
       id: null
       firstname: ""
       lastname: ""
-
-    initialize: ->
-      alert "initialized"
+      
