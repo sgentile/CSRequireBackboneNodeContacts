@@ -1,9 +1,9 @@
 ({
     appDir: '.',
-    baseUrl: 'javascripts',
+    baseUrl: 'public/javascripts',
     //Uncomment to turn off uglify minification.
     //optimize: 'none',
-    dir: '../demo-build',
+    dir: 'demo-build',
     paths: {
         jquery: 'libs/jquery/jquery-min',
 	  	underscore: 'libs/underscore/underscore-min',
