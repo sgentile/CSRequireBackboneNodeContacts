@@ -1,0 +1,7 @@
+*.class
+*.pyc
+*.pyo
+node_modules
+.project
+.DS_Store
+npm-debug.log
