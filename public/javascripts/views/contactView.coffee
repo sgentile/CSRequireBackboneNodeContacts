@@ -5,9 +5,8 @@ define [
   'text!templates/contactView.html'
 ], ($, _, Backbone, contactViewTemplate) ->
   class ContactView extends Backbone.View
-    tagName: 'li'
+    tagName: 'tr'
     #template: 
     render: ->
-      #$(@el).html(@template(@model.toJSON()))
       $(@el).html(_.template(contactViewTemplate, @model.toJSON()))
       @
