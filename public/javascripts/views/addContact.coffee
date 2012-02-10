@@ -24,7 +24,9 @@ define [
        }
        contacts.create(newContact, {
          success: (model, response) ->
-           alert('added')
+           $("#firstname").val("")
+           $("#lastname").val("")
+           $("#firstname").focus()
          error: ->
            alert('error')
        })

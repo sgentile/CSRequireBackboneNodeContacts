@@ -1,11 +1,23 @@
-<fieldset>
-	<legend>Add Contact</legend>
-	<form id="addContactForm" method="post">
-		<!--First Name: <input type="text" id="firstname" name="firstname" class="required" value="${firstname}"/><br/>
-		Last Name: <input type="text" id="lastname"  name="lastname" class="required" value="${lastname}"/><br/>
-		-->
-		First Name: <input type="text" id="firstname" name="firstname" class="required" /><br/>
-		Last Name: <input type="text" id="lastname"  name="lastname" class="required" /><br/>
-		<input type="submit" value="Add"/>
+<div class="well">
+	<form id="addContactForm" method="post" class="form-horizontal">
+		<fieldset>
+			<legend>Add Contact</legend>
+		<div class="control-group">
+			<label class="control-label" for="firstname">First Name:</label>
+			<div class="controls">
+				<input type="text" id="firstname" name="firstname" class="input-xlarge required">
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="lastname">Last Name:</label>
+			<div class="controls">
+				<input type="text" id="lastname"  name="lastname" class="input-xlarge required">
+			</div>
+		</div>
+		<div class="form-actions">
+			<button class="btn" type="submit">Save New Contact</button>
+		</div>
+		</fieldset>
 	</form>
-</fieldset>
+
+</div>
