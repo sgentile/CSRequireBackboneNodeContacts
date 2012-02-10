@@ -1,6 +1,6 @@
 define [ "underscore", "backbone" ], (_, Backbone) ->
   class ContactModel extends Backbone.Model
-    url: "Contact"
+    urlRoot: "Contact"
     defaults:
       id: null
       firstname: ""
