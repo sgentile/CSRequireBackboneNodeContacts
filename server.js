@@ -97,6 +97,25 @@ app.put('/Contact', function(req, res){
   	res.send(editContact);
 });
 
+app.put('/Contact/:id', function(req, res){
+	var editContact = _.find(contacts, function(c){
+		return req.body.id == c.id;
+	});
+	
+	editContact.firstname = req.body.firstname;
+	editContact.lastname = req.body.lastname;
+	if(req.body.phonenumbers){
+		editContact.phonenumbers = req.body.phonenumbers;
+		_.each(editContact.phonenumbers, function(phonenumber){
+			if(!phonenumber.id){
+				phonenumber.id = uuid.v1();
+			}
+		});
+	}
+	console.log("Update " + JSON.stringify(editContact));
+  	res.send(editContact);
+});
+
 app.del('/Contact/:id', function(req, res){
 	var editContact = _.find(contacts, function(c){
 		return req.params.id == c.id;
