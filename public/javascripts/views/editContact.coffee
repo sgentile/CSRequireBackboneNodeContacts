@@ -12,9 +12,15 @@ define [
     events:
       "submit #editContactForm" : 'saveContact'
     
+    initialize: ->
+      @model.bind('destroy', @remove, @)
+      
     render: ->      
       $(@el).html(_.template(editContactTemplate, @model.toJSON()))
       @
+      
+    remove: ->
+      
       
     saveContact: (e) ->
       e.preventDefault()

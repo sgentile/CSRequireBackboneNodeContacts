@@ -7,7 +7,7 @@ define [
 ], (_, Backbone, mainView, contactsListView, addContact) ->
   class AppRouter extends Backbone.Router
     routes:
-      "" : "home"      
+      "" : "home"     
            
     home: ->
       mainView.render()

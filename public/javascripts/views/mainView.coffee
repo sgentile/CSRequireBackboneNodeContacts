@@ -9,4 +9,5 @@ define [
     render: ->
       $(@el).html(mainViewTemplate)
       @
+  
   new MainView()
