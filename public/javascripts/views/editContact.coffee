@@ -17,14 +17,23 @@ define [
       
     render: ->      
       $(@el).html(_.template(editContactTemplate, @model.toJSON()))
-      @
+      $("#editContactForm").validate({
+        errorClass:'error'
+        validClass:'success'
+        errorElement:'span'      
+        highlight: (element, errorClass, validClass) ->
+          $(element).parent('div').parent('div').removeClass(validClass).addClass(errorClass)
+        unhighlight: (element, errorClass, validClass) ->
+          $(element).parent('div').parent('div').removeClass(errorClass).addClass(validClass)
+      })
       
     remove: ->
+      $(@el).unbind();
+      $('#editContactContainer').remove();
       
       
     saveContact: (e) ->
       e.preventDefault()
-      $("#editContactForm").validate()
       
       
       @model.save        
