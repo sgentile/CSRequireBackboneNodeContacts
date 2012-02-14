@@ -1,3 +1,4 @@
+
 # CSRequireBackboneNodeContacts
 
 Sample app using Coffeescript, Backbone, RequireJS, NodeJs
