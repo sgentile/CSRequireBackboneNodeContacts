@@ -3,42 +3,34 @@ define [
   'underscore', 
   'backbone',
   'cs!collections/contacts',
+  'cs!models/contact',
   'text!templates/addContactView.html',
+  'modelbinding'
   'jqueryvalidate'
-], ($, _, Backbone, contacts, addContactViewTemplate) ->
+], ($, _, Backbone, contacts, Contact, addContactViewTemplate, modelbinding) ->
    class AddContact extends Backbone.View
      el: "#addContactRegion"
+     model: new Contact
      events: {
       'submit #addContactForm' : 'addContact'
      }
      render: ->
-       $(@el).html(addContactViewTemplate)
-       $("#addContactForm").validate(
-        errorClass:'error'
-        validClass:'success'
-        errorElement:'span'      
-        highlight: (element, errorClass, validClass) ->
-          $(element).parent('div').parent('div').removeClass(validClass).addClass(errorClass)
-        unhighlight: (element, errorClass, validClass) ->
-          $(element).parent('div').parent('div').removeClass(errorClass).addClass(validClass)
-       )  
-       
-       
+       $(@el).html(addContactViewTemplate)  
+       modelbinding.bind(@)  #make sure if you ever close this view to unbind this...
+       @
+              
      addContact: (e) ->
-       e.preventDefault() #don't return for a form post   
-         
-       newContact = {
-         firstname:  $("#firstname").val(),
-         lastname:   $("#lastname").val()
-       }
+       e.preventDefault() #don't return for a form post 
+       newContact = @model.clone()
        contacts.create(newContact, {
-         success: (model, response) ->
-           $("#firstname").val("")
-           $("#lastname").val("")
+         success: (model, response) =>
+           @model.clear()
            $("#firstname").focus()
+           @
          error: ->
            alert('error')
-       })
+           @
+       }) if $("#addContactForm").valid()
        
    new AddContact()
       

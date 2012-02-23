@@ -4,6 +4,7 @@ require({
   	jqueryvalidate: 'libs/jquery/jquery.validate',
   	underscore: 'libs/underscore/underscore-min',
   	backbone: 'libs/backbone/backbone-min',
+  	modelbinding: 'libs/backbone/backbone.modelbinding',
   	text: 'libs/require/text',
     cs: 'cs'
   }
@@ -74,6 +75,26 @@ $.extend($.validator.prototype, {
   }
 });
 
+$('form.validate').validate({
+    errorClass: 'error',
+    //validClass: 'success',
+    errorElement: 'span',
+    highlight: function(element, errorClass, validClass) {
+      if (element.type === 'radio') {
+        this.findByName(element.name).parent('div').parent('div').addClass(errorClass);
+      } else {
+        $(element).parent('div').parent('div').addClass(errorClass);
+      }
+    },
+    unhighlight: function(element, errorClass, validClass) {
+      if (element.type === 'radio') {
+        this.findByName(element.name).parent('div').parent('div').removeClass(errorClass);
+      } else {
+        $(element).parent('div').parent('div').removeClass(errorClass);
+      }
+    }
+  });
+});
 //example:
 // $('form.validate').validate({
     // errorClass: 'error',
@@ -94,6 +115,6 @@ $.extend($.validator.prototype, {
       // }
     // }
   // });
-});
+// });
 
 

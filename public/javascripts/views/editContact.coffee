@@ -4,9 +4,10 @@ define [
   'backbone',
   'cs!models/contact'
   'cs!collections/contacts',
-  'text!templates/editContactView.html'
+  'text!templates/editContactView.html',
+  'modelbinding'
   'jqueryvalidate'
-], ($, _, Backbone, Contact, contacts, editContactTemplate) ->
+], ($, _, Backbone, Contact, contacts, editContactTemplate, modelbinding) ->
   class EditContact extends Backbone.View
     el: "#editContactRegion"
     events:
@@ -17,16 +18,9 @@ define [
       
     render: ->      
       $(@el).html(_.template(editContactTemplate, @model.toJSON()))
-      $("#editContactForm").validate({
-        errorClass:'error'
-        validClass:'success'
-        errorElement:'span'      
-        highlight: (element, errorClass, validClass) ->
-          $(element).parent('div').parent('div').removeClass(validClass).addClass(errorClass)
-        unhighlight: (element, errorClass, validClass) ->
-          $(element).parent('div').parent('div').removeClass(errorClass).addClass(validClass)
-      })
-      
+      modelbinding.bind(@)
+      @
+            
     remove: ->
       $(@el).unbind();
       $('#editContactContainer').remove();
@@ -35,6 +29,7 @@ define [
     saveContact: (e) ->
       e.preventDefault()
       
+      alert(@model.get('firstname'))
       
       @model.save        
         firstname: $("#editfirstname").val()
@@ -43,6 +38,7 @@ define [
         success: (model, response) =>
           $(@el).unbind();
           $(@el).empty();
+          modelbinding.unbind(@)
           model.collection
       ,
         error: (model, response) ->
